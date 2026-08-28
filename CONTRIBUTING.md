@@ -5,6 +5,7 @@ Thank you for your interest in contributing to AssertJ!
 We appreciate your effort, and to make sure that your pull request is easy to review, we ask you to note the following guidelines, including legal contributor agreement:
 
 * Use JDK 25 or newer to build the project.
+* The build loads the [mvn-lens](https://github.com/mvn-perf/mvn-lens) Maven extension (see `.mvn/extensions.xml`) to profile every build into `target/mvnlens/report.html`. It is only published as a SNAPSHOT to the Maven Central snapshot repository, which Maven cannot use for core extensions, so pre-resolve it once on a fresh clone (and whenever you want a newer snapshot) before running `./mvnw`: `cd .mvn && ../mvnw -U dependency:resolve` (see `.mvn/pom.xml`). Pass `-Dmvnlens.disabled=true` to skip the profiling for one build.
 * Use **[AssertJ code Eclipse formatting preferences](eclipse/assertj-eclipse-formatter.xml)** (for IntelliJ IDEA users, you can import it with the [Adapter for Eclipse Code Formatter](https://plugins.jetbrains.com/plugin/6546-adapter-for-eclipse-code-formatter) plugin)
 * Write a complete Javadoc for each assertion method with a code example (succeeding and failing assertion(s)).
 * As we use JUnit 6, favor `package-private` visibility for test classes and methods.

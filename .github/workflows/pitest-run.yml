@@ -26,15 +26,33 @@ jobs:
           distribution: 'zulu'
           java-version: '25'
           cache: 'maven'
+      # Must come before any Maven invocation rooted at the checkout: Maven loads the core
+      # extensions listed in .mvn/extensions.xml before it reads pom.xml, resolving them from
+      # settings.xml only, so the Maven Central snapshot repository serving mvn-lens cannot be
+      # declared in pom.xml. Building .mvn/pom.xml downloads the extension into the local
+      # repository, where every later invocation finds it. See .mvn/pom.xml.
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Run Mutation Testing
         run: >
           ./mvnw $MAVEN_ARGS -am test-compile pitest:mutationCoverage
           -pl assertj-tests/assertj-integration-tests/assertj-core-tests,assertj-tests/assertj-integration-tests/assertj-guava-tests
           -DextraFeatures="+GIT(from[HEAD~1]), +gitci"
+      # mvn-lens is switched off here: this invocation is not the build being monitored, and
+      # its report would otherwise overwrite the mutation testing one in target/mvnlens.
       - name: Aggregate Results
-        run: ./mvnw $MAVEN_ARGS pitest-git:aggregate
+        run: ./mvnw $MAVEN_ARGS -Dmvnlens.disabled=true pitest-git:aggregate
       - name: Upload Results
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: pitest
           path: target/pit-reports-ci/
+      # mvn-lens writes the report when the Maven session ends, a failed one included,
+      # which is exactly the build worth looking at.
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-pitest
+          path: target/mvnlens
