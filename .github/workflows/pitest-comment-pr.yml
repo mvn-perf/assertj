@@ -39,5 +39,14 @@ jobs:
           path: target/pit-reports
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      # Must come before any Maven invocation rooted at the checkout: Maven loads the core
+      # extensions listed in .mvn/extensions.xml before it reads pom.xml, resolving them from
+      # settings.xml only, so the Maven Central snapshot repository serving mvn-lens cannot be
+      # declared in pom.xml. Building .mvn/pom.xml downloads the extension into the local
+      # repository, where every later invocation finds it. See .mvn/pom.xml.
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
+      # mvn-lens is switched off here: this invocation only posts a comment, there is no build to profile.
       - name: Post Result to PR
-        run: ./mvnw $MAVEN_ARGS pitest-github:github -DrepoToken=${{ secrets.GITHUB_TOKEN }}
+        run: ./mvnw $MAVEN_ARGS -Dmvnlens.disabled=true pitest-github:github -DrepoToken=${{ secrets.GITHUB_TOKEN }}

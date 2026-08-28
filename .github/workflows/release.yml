@@ -27,6 +27,14 @@ jobs:
           server-username: MAVEN_CENTRAL_USERNAME
           server-password: MAVEN_CENTRAL_TOKEN
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+      # Must come before any Maven invocation rooted at the checkout: Maven loads the core
+      # extensions listed in .mvn/extensions.xml before it reads pom.xml, resolving them from
+      # settings.xml only, so the Maven Central snapshot repository serving mvn-lens cannot be
+      # declared in pom.xml. Building .mvn/pom.xml downloads the extension into the local
+      # repository, where every later invocation finds it. See .mvn/pom.xml.
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
 
       - name: Publish to Maven Central
         run: |
@@ -37,3 +45,9 @@ jobs:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-release
+          path: target/mvnlens

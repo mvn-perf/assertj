@@ -33,6 +33,14 @@ jobs:
           java-version: '25'
           cache: 'maven'
       - uses: testlens-app/setup-testlens@d29a2be31512b3aeda3adcef09fbe0d55af90c51 # v1.9.4
+      # Must come before any Maven invocation rooted at the checkout: Maven loads the core
+      # extensions listed in .mvn/extensions.xml before it reads pom.xml, resolving them from
+      # settings.xml only, so the Maven Central snapshot repository serving mvn-lens cannot be
+      # declared in pom.xml. Building .mvn/pom.xml downloads the extension into the local
+      # repository, where every later invocation finds it. See .mvn/pom.xml.
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Test
         run: ./mvnw $MAVEN_ARGS verify
       - name: Publish Test Report
@@ -40,6 +48,14 @@ jobs:
         if: success() || failure() # always run even if the previous step fails
         with:
           report_paths: '**/target/surefire-reports/TEST-*.xml'
+      # mvn-lens writes the report when the Maven session ends, a failed one included,
+      # which is exactly the build worth looking at.
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-java-25-${{ matrix.os }}
+          path: target/mvnlens
 
   java-oracle:
 
@@ -60,8 +76,17 @@ jobs:
           release: ${{ matrix.java }}
           version: latest
       - uses: testlens-app/setup-testlens@d29a2be31512b3aeda3adcef09fbe0d55af90c51 # v1.9.4
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Test
         run: ./mvnw $MAVEN_ARGS verify
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-java-${{ matrix.java }}
+          path: target/mvnlens
 
   groovy:
 
@@ -82,8 +107,17 @@ jobs:
           java-version: '25'
           cache: 'maven'
       - uses: testlens-app/setup-testlens@d29a2be31512b3aeda3adcef09fbe0d55af90c51 # v1.9.4
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Test
         run: ./mvnw $MAVEN_ARGS -pl assertj-tests/assertj-integration-tests/assertj-core-groovy -am -Dgroovy.version=${{ matrix.groovy }} verify
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-groovy-${{ matrix.groovy }}
+          path: target/mvnlens
 
   kotlin:
 
@@ -104,8 +138,17 @@ jobs:
           java-version: '25'
           cache: 'maven'
       - uses: testlens-app/setup-testlens@d29a2be31512b3aeda3adcef09fbe0d55af90c51 # v1.9.4
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Test
         run: ./mvnw $MAVEN_ARGS -pl assertj-tests/assertj-integration-tests/assertj-core-kotlin -am -Dkotlin.version=${{ matrix.kotlin }} verify
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-kotlin-${{ matrix.kotlin }}
+          path: target/mvnlens
 
   javadoc:
 
@@ -120,6 +163,9 @@ jobs:
           distribution: 'zulu'
           java-version: '25'
           cache: 'maven'
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Generate Javadoc
         run: ./mvnw $MAVEN_ARGS -DskipTests package javadoc:javadoc
       - name: Upload Javadoc
@@ -129,6 +175,12 @@ jobs:
           if-no-files-found: error
           path: |
             **/target/reports/apidocs
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-javadoc
+          path: target/mvnlens
 
   sonar:
 
@@ -147,6 +199,9 @@ jobs:
           java-version: '25'
           cache: 'maven'
       - uses: testlens-app/setup-testlens@d29a2be31512b3aeda3adcef09fbe0d55af90c51 # v1.9.4
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Test with Sonar
         run: >
           ./mvnw $MAVEN_ARGS verify sonar:sonar
@@ -156,6 +211,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-sonar
+          path: target/mvnlens
 
   publish-snapshot:
 
@@ -176,9 +237,18 @@ jobs:
           server-password: MAVEN_CENTRAL_TOKEN
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
 
+      - name: Pre-resolve the mvn-lens extension
+        working-directory: .mvn
+        run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Publish to Maven Central
         run: ./mvnw $MAVEN_ARGS -DskipTests -Ppublish deploy
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mvn-lens-publish-snapshot
+          path: target/mvnlens
