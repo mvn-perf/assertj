@@ -23,9 +23,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     permissions:
       checks: write
+      contents: write   # build-monitor/report commits the mvn-lens report to the inbox branch
+      actions: read     # … and identifies its own job/step through the Jobs API
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Setup Java
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
@@ -49,13 +53,13 @@ jobs:
         with:
           report_paths: '**/target/surefire-reports/TEST-*.xml'
       # mvn-lens writes the report when the Maven session ends, a failed one included,
-      # which is exactly the build worth looking at.
-      - name: Archive the mvn-lens build report
-        if: success() || failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      # which is exactly the build worth looking at. The report is committed to the
+      # monitoring inbox branch (no artifact) and linked from the job summary.
+      - name: Publish the mvn-lens build report
+        if: ${{ !cancelled() }}
+        uses: mvn-perf/build-monitor/report@main
         with:
-          name: mvn-lens-java-25-${{ matrix.os }}
-          path: target/mvnlens
+          job-name: Java 25 (${{ matrix.os }})
 
   java-oracle:
 
@@ -66,9 +70,14 @@ jobs:
         # https://jdk.java.net/
         java: [26, 27, 28, leyden, loom, valhalla]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # build-monitor/report commits the mvn-lens report to the inbox branch
+      actions: read     # … and identifies its own job/step through the Jobs API
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Set up Java
         uses: oracle-actions/setup-java@fff43251af9936a0e6a4d5d0946e14f1680e9b6b # v1.5.0
         with:
@@ -81,12 +90,12 @@ jobs:
         run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Test
         run: ./mvnw $MAVEN_ARGS verify
-      - name: Archive the mvn-lens build report
-        if: success() || failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      # Committed to the monitoring inbox branch (no artifact), see the java job.
+      - name: Publish the mvn-lens build report
+        if: ${{ !cancelled() }}
+        uses: mvn-perf/build-monitor/report@main
         with:
-          name: mvn-lens-java-${{ matrix.java }}
-          path: target/mvnlens
+          job-name: Java ${{ matrix.java }}
 
   groovy:
 
@@ -97,9 +106,14 @@ jobs:
         # https://groovy.apache.org/download.html
         groovy: [4.0.32]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # build-monitor/report commits the mvn-lens report to the inbox branch
+      actions: read     # … and identifies its own job/step through the Jobs API
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Setup Java
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
@@ -112,12 +126,12 @@ jobs:
         run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Test
         run: ./mvnw $MAVEN_ARGS -pl assertj-tests/assertj-integration-tests/assertj-core-groovy -am -Dgroovy.version=${{ matrix.groovy }} verify
-      - name: Archive the mvn-lens build report
-        if: success() || failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      # Committed to the monitoring inbox branch (no artifact), see the java job.
+      - name: Publish the mvn-lens build report
+        if: ${{ !cancelled() }}
+        uses: mvn-perf/build-monitor/report@main
         with:
-          name: mvn-lens-groovy-${{ matrix.groovy }}
-          path: target/mvnlens
+          job-name: Groovy ${{ matrix.groovy }}
 
   kotlin:
 
@@ -128,9 +142,14 @@ jobs:
         # https://kotlinlang.org/docs/releases.html#release-details
         kotlin: [2.1.21, 2.2.21]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # build-monitor/report commits the mvn-lens report to the inbox branch
+      actions: read     # … and identifies its own job/step through the Jobs API
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Setup Java
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
@@ -143,20 +162,25 @@ jobs:
         run: ../mvnw $MAVEN_ARGS -U dependency:resolve
       - name: Test
         run: ./mvnw $MAVEN_ARGS -pl assertj-tests/assertj-integration-tests/assertj-core-kotlin -am -Dkotlin.version=${{ matrix.kotlin }} verify
-      - name: Archive the mvn-lens build report
-        if: success() || failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      # Committed to the monitoring inbox branch (no artifact), see the java job.
+      - name: Publish the mvn-lens build report
+        if: ${{ !cancelled() }}
+        uses: mvn-perf/build-monitor/report@main
         with:
-          name: mvn-lens-kotlin-${{ matrix.kotlin }}
-          path: target/mvnlens
+          job-name: Kotlin ${{ matrix.kotlin }}
 
   javadoc:
 
     name: Javadoc
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # build-monitor/report commits the mvn-lens report to the inbox branch
+      actions: read     # … and identifies its own job/step through the Jobs API
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Set up Java
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
@@ -175,12 +199,12 @@ jobs:
           if-no-files-found: error
           path: |
             **/target/reports/apidocs
-      - name: Archive the mvn-lens build report
-        if: success() || failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      # Committed to the monitoring inbox branch (no artifact), see the java job.
+      - name: Publish the mvn-lens build report
+        if: ${{ !cancelled() }}
+        uses: mvn-perf/build-monitor/report@main
         with:
-          name: mvn-lens-javadoc
-          path: target/mvnlens
+          job-name: Javadoc
 
   sonar:
 
@@ -252,3 +276,17 @@ jobs:
         with:
           name: mvn-lens-publish-snapshot
           path: target/mvnlens
+
+  monitoring:
+
+    name: Build monitoring
+    needs: [java, java-oracle, groovy, kotlin, javadoc]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+
+    steps:
+      - name: Link the monitoring page from the run summary
+        uses: mvn-perf/build-monitor/summary@main
