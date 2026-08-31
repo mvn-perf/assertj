@@ -5,6 +5,15 @@ name: Build monitor
 # build jobs, updates the build history and publishes the monitoring page to the
 # gh-pages branch (Settings -> Pages -> Deploy from a branch: gh-pages / root).
 # https://github.com/mvn-perf/build-monitor
+#
+# ON A FORK, ENABLE THIS WORKFLOW ONCE. GitHub disables scheduled workflows in
+# forked repositories by default, and a workflow in that state runs on NO
+# trigger at all - workflow_run and workflow_dispatch included. Actions tab ->
+# "Build monitor" -> "Enable workflow", or:
+#   gh workflow enable build-monitor.yml -R <owner>/<repo>
+# Check the state with:
+#   gh api repos/<owner>/<repo>/actions/workflows/build-monitor.yml --jq .state
+# ("active" = runs, "disabled_fork"/"disabled_manually" = nothing runs).
 
 on:
   workflow_run:

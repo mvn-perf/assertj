@@ -210,16 +210,12 @@ jobs:
 
     name: Sonar code analysis
     runs-on: ubuntu-latest
-    permissions:
-      contents: write   # build-monitor/report commits the mvn-lens report to the inbox branch
-      actions: read     # … and identifies its own job/step through the Jobs API
     if: github.repository_owner == 'assertj' && github.event_name == 'push'
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-          persist-credentials: false
       - name: Setup Java
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
@@ -239,27 +235,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      # Committed to the monitoring inbox branch (no artifact), see the java job.
-      - name: Publish the mvn-lens build report
-        if: ${{ !cancelled() }}
-        uses: mvn-perf/build-monitor/report@main
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          job-name: Sonar code analysis
+          name: mvn-lens-sonar
+          path: target/mvnlens
 
   publish-snapshot:
 
     name: Publish Snapshot
     needs: [java, javadoc]
     runs-on: ubuntu-latest
-    permissions:
-      contents: write   # build-monitor/report commits the mvn-lens report to the inbox branch
-      actions: read     # … and identifies its own job/step through the Jobs API
     if: github.repository_owner == 'assertj' && github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
       - name: Set up Maven Central
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
@@ -279,12 +270,12 @@ jobs:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-      # Committed to the monitoring inbox branch (no artifact), see the java job.
-      - name: Publish the mvn-lens build report
-        if: ${{ !cancelled() }}
-        uses: mvn-perf/build-monitor/report@main
+      - name: Archive the mvn-lens build report
+        if: success() || failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          job-name: Publish Snapshot
+          name: mvn-lens-publish-snapshot
+          path: target/mvnlens
 
   monitoring:
 
