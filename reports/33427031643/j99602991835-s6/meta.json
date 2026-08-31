@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 33427031643,
+  "runNumber": 6,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/pull/2/merge",
+  "jobKey": "java-oracle",
+  "jobId": 99602991835,
+  "jobName": "Java 27",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/33427031643/job/99602991835",
+  "runnerName": "GitHub Actions 1000001396",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j99602991835-s6",
+  "collectedAt": "2026-08-31T18:52:59.317Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "27",
+        "status": "OK",
+        "startedAt": 1788202121595,
+        "endedAt": 1788202374122,
+        "totalMs": 252826,
+        "wallMs": 252526,
+        "cpuMs": 99272,
+        "gcMs": 2406,
+        "gcCount": 176,
+        "jitMs": 123088,
+        "c2Ms": 122979,
+        "downloadMs": 798488,
+        "downloadBytes": 253829665,
+        "downloadCount": 1257,
+        "moduleCount": 13,
+        "slowestMojo": {
+          "plugin": "org.apache.maven.plugins:maven-surefire-plugin",
+          "goal": "test",
+          "phase": "test",
+          "executionId": "default-test",
+          "moduleKey": "org.assertj:assertj-core:4.0.0-SNAPSHOT",
+          "durationMs": 43293
+        },
+        "slowestTest": {
+          "className": "org.assertj.core.error.ShouldBeEqual_newAssertionError_without_JUnit_and_OTA4J_Test",
+          "methodName": "should_create_AssertionError_if_created_AssertionFailedError_is_null",
+          "displayName": "should create AssertionError if created AssertionFailedError is null",
+          "framework": "JUNIT5",
+          "durationMs": 633
+        },
+        "testCount": 5,
+        "testMs": 2663,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 8,
+          "cpuThreads": 4,
+          "memoryBytes": 16766414848,
+          "osName": "DISTRIB_ID=Ubuntu",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Oracle Corporation",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": true,
+      "bytes": 2918194
+    }
+  ]
+}

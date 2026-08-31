@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 33427031643,
+  "runNumber": 6,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/pull/2/merge",
+  "jobKey": "java-oracle",
+  "jobId": 99602991841,
+  "jobName": "Java leyden",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/33427031643/job/99602991841",
+  "runnerName": "GitHub Actions 1000001392",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j99602991841-s6",
+  "collectedAt": "2026-08-31T18:53:01.156Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "26-leydenpremain",
+        "status": "OK",
+        "startedAt": 1788202123370,
+        "endedAt": 1788202376242,
+        "totalMs": 253157,
+        "wallMs": 252871,
+        "cpuMs": 91625,
+        "gcMs": 2865,
+        "gcCount": 160,
+        "jitMs": 85427,
+        "c2Ms": 85313,
+        "downloadMs": 997846,
+        "downloadBytes": 253829665,
+        "downloadCount": 1257,
+        "moduleCount": 13,
+        "slowestMojo": {
+          "plugin": "biz.aQute.bnd:bnd-resolver-maven-plugin",
+          "goal": "resolve",
+          "phase": "pre-integration-test",
+          "executionId": "osgi-integration-resolving",
+          "moduleKey": "org.assertj:assertj-guava:4.0.0-SNAPSHOT",
+          "durationMs": 41041
+        },
+        "slowestTest": {
+          "className": "org.assertj.tests.core.presentation.StandardRepresentation_iterable_format_Test",
+          "methodName": "should_format_big_list",
+          "displayName": "should format big list",
+          "framework": "JUNIT5",
+          "durationMs": 552
+        },
+        "testCount": 5,
+        "testMs": 2143,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 16,
+          "cpuThreads": 4,
+          "memoryBytes": 16766414848,
+          "osName": "DISTRIB_ID=Ubuntu",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Oracle Corporation",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": true,
+      "bytes": 2852614
+    }
+  ]
+}
