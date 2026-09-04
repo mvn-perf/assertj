@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 33852101842,
+  "runNumber": 8,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/pull/3/merge",
+  "jobKey": "javadoc",
+  "jobId": 100956996557,
+  "jobName": "Javadoc",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/33852101842/job/100956996557",
+  "runnerName": "GitHub Actions 1000001548",
+  "stepNumber": 5,
+  "stepName": "Generate Javadoc",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j100956996557-s5",
+  "collectedAt": "2026-09-04T08:12:15.965Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "package",
+          "javadoc:javadoc"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "25.0.4",
+        "status": "OK",
+        "startedAt": 1788509418527,
+        "endedAt": 1788509528831,
+        "totalMs": 110593,
+        "wallMs": 110304,
+        "cpuMs": 40887,
+        "gcMs": 1768,
+        "gcCount": 122,
+        "jitMs": 29088,
+        "c2Ms": 29088,
+        "downloadMs": 262296,
+        "downloadBytes": 145172117,
+        "downloadCount": 357,
+        "moduleCount": 15,
+        "slowestMojo": {
+          "plugin": "org.apache.maven.plugins:maven-javadoc-plugin",
+          "goal": "javadoc",
+          "phase": null,
+          "executionId": "default-cli",
+          "moduleKey": "org.assertj:assertj-build:4.0.0-SNAPSHOT",
+          "durationMs": 14727
+        },
+        "slowestTest": null,
+        "testCount": 0,
+        "testMs": 0,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 2,
+          "cpuThreads": 4,
+          "memoryBytes": 16765378560,
+          "osName": "DISTRIB_ID=Ubuntu",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Azul Systems, Inc.",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": false,
+      "bytes": 1602974
+    }
+  ]
+}
