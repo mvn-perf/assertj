@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 33852101842,
+  "runNumber": 8,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/pull/3/merge",
+  "jobKey": "java",
+  "jobId": 100956996606,
+  "jobName": "Java 25 (macOS-latest)",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/33852101842/job/100956996606",
+  "runnerName": "GitHub Actions 1000001554",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j100956996606-s6",
+  "collectedAt": "2026-09-04T08:13:22.793Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "25.0.4",
+        "status": "OK",
+        "startedAt": 1788509425405,
+        "endedAt": 1788509591805,
+        "totalMs": 166794,
+        "wallMs": 166400,
+        "cpuMs": 88683,
+        "gcMs": 4641,
+        "gcCount": 359,
+        "jitMs": 40735,
+        "c2Ms": 40735,
+        "downloadMs": 1166,
+        "downloadBytes": 1073,
+        "downloadCount": 2,
+        "moduleCount": 15,
+        "slowestMojo": {
+          "plugin": "org.apache.maven.plugins:maven-surefire-plugin",
+          "goal": "test",
+          "phase": "test",
+          "executionId": "default-test",
+          "moduleKey": "org.assertj:assertj-core:4.0.0-SNAPSHOT",
+          "durationMs": 36443
+        },
+        "slowestTest": {
+          "className": "org.assertj.tests.core.presentation.StandardRepresentation_array_format_Test",
+          "methodName": "should_format_big_primitive_array",
+          "displayName": "should format big primitive array",
+          "framework": "JUNIT5",
+          "durationMs": 1429
+        },
+        "testCount": 10,
+        "testMs": 5231,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 3,
+          "cpuCores": 3,
+          "cpuThreads": 3,
+          "memoryBytes": 7516192768,
+          "osName": "uname: Darwin 25.5.0 Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:00 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_VMAPPLE arm64",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Azul Systems, Inc.",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": false,
+      "bytes": 2966909
+    }
+  ]
+}
