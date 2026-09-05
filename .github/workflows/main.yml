@@ -57,7 +57,7 @@ jobs:
       # monitoring inbox branch (no artifact) and linked from the job summary.
       - name: Publish the mvn-lens build report
         if: ${{ !cancelled() }}
-        uses: mvn-perf/build-monitor/report@main
+        uses: mvn-perf/build-monitor/report@job-summary-overview
         with:
           job-name: Java 25 (${{ matrix.os }})
 
@@ -93,7 +93,7 @@ jobs:
       # Committed to the monitoring inbox branch (no artifact), see the java job.
       - name: Publish the mvn-lens build report
         if: ${{ !cancelled() }}
-        uses: mvn-perf/build-monitor/report@main
+        uses: mvn-perf/build-monitor/report@job-summary-overview
         with:
           job-name: Java ${{ matrix.java }}
 
@@ -129,7 +129,7 @@ jobs:
       # Committed to the monitoring inbox branch (no artifact), see the java job.
       - name: Publish the mvn-lens build report
         if: ${{ !cancelled() }}
-        uses: mvn-perf/build-monitor/report@main
+        uses: mvn-perf/build-monitor/report@job-summary-overview
         with:
           job-name: Groovy ${{ matrix.groovy }}
 
@@ -165,7 +165,7 @@ jobs:
       # Committed to the monitoring inbox branch (no artifact), see the java job.
       - name: Publish the mvn-lens build report
         if: ${{ !cancelled() }}
-        uses: mvn-perf/build-monitor/report@main
+        uses: mvn-perf/build-monitor/report@job-summary-overview
         with:
           job-name: Kotlin ${{ matrix.kotlin }}
 
@@ -202,7 +202,7 @@ jobs:
       # Committed to the monitoring inbox branch (no artifact), see the java job.
       - name: Publish the mvn-lens build report
         if: ${{ !cancelled() }}
-        uses: mvn-perf/build-monitor/report@main
+        uses: mvn-perf/build-monitor/report@job-summary-overview
         with:
           job-name: Javadoc
 
@@ -289,4 +289,4 @@ jobs:
 
     steps:
       - name: Link the monitoring page from the run summary
-        uses: mvn-perf/build-monitor/summary@main
+        uses: mvn-perf/build-monitor/summary@job-summary-overview
