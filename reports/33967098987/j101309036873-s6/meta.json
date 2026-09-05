@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 33967098987,
+  "runNumber": 9,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/pull/4/merge",
+  "jobKey": "groovy",
+  "jobId": 101309036873,
+  "jobName": "Groovy 4.0.32",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/33967098987/job/101309036873",
+  "runnerName": "GitHub Actions 1000001585",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j101309036873-s6",
+  "collectedAt": "2026-09-05T12:50:37.635Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "25.0.4",
+        "status": "OK",
+        "startedAt": 1788612555631,
+        "endedAt": 1788612634636,
+        "totalMs": 79303,
+        "wallMs": 79005,
+        "cpuMs": 55621,
+        "gcMs": 2036,
+        "gcCount": 166,
+        "jitMs": 57549,
+        "c2Ms": 57444,
+        "downloadMs": 0,
+        "downloadBytes": 0,
+        "downloadCount": 0,
+        "moduleCount": 6,
+        "slowestMojo": {
+          "plugin": "org.apache.maven.plugins:maven-surefire-plugin",
+          "goal": "test",
+          "phase": "test",
+          "executionId": "default-test",
+          "moduleKey": "org.assertj:assertj-core:4.0.0-SNAPSHOT",
+          "durationMs": 33712
+        },
+        "slowestTest": {
+          "className": "org.assertj.core.internal.char2darrays.Char2DArrays_assertHasDimensions_Test",
+          "methodName": "should_delegate_to_Arrays2D",
+          "displayName": "should delegate to Arrays2D",
+          "framework": "JUNIT5",
+          "durationMs": 484
+        },
+        "testCount": 10,
+        "testMs": 1921,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 16,
+          "cpuThreads": 4,
+          "memoryBytes": 16766414848,
+          "osName": "DISTRIB_ID=Ubuntu",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Azul Systems, Inc.",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": false,
+      "bytes": 2428726
+    }
+  ]
+}

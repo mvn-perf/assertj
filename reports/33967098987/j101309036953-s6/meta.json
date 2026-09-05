@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 33967098987,
+  "runNumber": 9,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/pull/4/merge",
+  "jobKey": "java",
+  "jobId": 101309036953,
+  "jobName": "Java 25 (windows-latest)",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/33967098987/job/101309036953",
+  "runnerName": "GitHub Actions 1000001591",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j101309036953-s6",
+  "collectedAt": "2026-09-05T12:53:18.150Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "25.0.4",
+        "status": "OK",
+        "startedAt": 1788612590783,
+        "endedAt": 1788612787855,
+        "totalMs": 197582,
+        "wallMs": 197072,
+        "cpuMs": 111845,
+        "gcMs": 0,
+        "gcCount": 281,
+        "jitMs": 124627,
+        "c2Ms": 124627,
+        "downloadMs": 1181,
+        "downloadBytes": 1073,
+        "downloadCount": 2,
+        "moduleCount": 14,
+        "slowestMojo": {
+          "plugin": "org.apache.maven.plugins:maven-surefire-plugin",
+          "goal": "test",
+          "phase": "test",
+          "executionId": "default-test",
+          "moduleKey": "org.assertj:assertj-core:4.0.0-SNAPSHOT",
+          "durationMs": 47384
+        },
+        "slowestTest": {
+          "className": "org.assertj.core.api.abstract_.AbstractAssert_asInstanceOf_with_InstanceOfAssertFactory_Test",
+          "methodName": "should_have_internal_effects",
+          "displayName": "should have internal effects",
+          "framework": "JUNIT5",
+          "durationMs": 1215
+        },
+        "testCount": 10,
+        "testMs": 4432,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 16,
+          "cpuThreads": 4,
+          "memoryBytes": 17174360064,
+          "osName": "Windows Server 2025 , 64 bit Build 26100 (10.0.26100.33296)",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Azul Systems, Inc.",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": false,
+      "bytes": 3021345
+    }
+  ]
+}
