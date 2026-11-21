@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 44952511060,
+  "runNumber": 10,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/heads/main",
+  "jobKey": "java-oracle",
+  "jobId": 136993324621,
+  "jobName": "Java loom",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/44952511060/job/136993324621",
+  "runnerName": "GitHub Actions 1000003946",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j136993324621-s6",
+  "collectedAt": "2026-11-21T21:42:47.729Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "25-loom",
+        "status": "OK",
+        "startedAt": 1795297090985,
+        "endedAt": 1795297363863,
+        "totalMs": 273094,
+        "wallMs": 272877,
+        "cpuMs": 62194,
+        "gcMs": 2751,
+        "gcCount": 348,
+        "jitMs": 41774,
+        "c2Ms": 41774,
+        "downloadMs": 1094693,
+        "downloadBytes": 347181122,
+        "downloadCount": 1334,
+        "moduleCount": 15,
+        "slowestMojo": {
+          "plugin": "biz.aQute.bnd:bnd-resolver-maven-plugin",
+          "goal": "resolve",
+          "phase": "pre-integration-test",
+          "executionId": "osgi-integration-resolving",
+          "moduleKey": "org.assertj:assertj-guava:4.0.0-SNAPSHOT",
+          "durationMs": 50332
+        },
+        "slowestTest": {
+          "className": "org.assertj.tests.core.api.recursive.comparison.Issue_3533_Test",
+          "methodName": "test",
+          "displayName": "test()",
+          "framework": "JUNIT5",
+          "durationMs": 339
+        },
+        "testCount": 10,
+        "testMs": 2402,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 16,
+          "cpuThreads": 4,
+          "memoryBytes": 16759431168,
+          "osName": "DISTRIB_ID=Ubuntu",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Oracle Corporation",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": false,
+      "bytes": 2962248
+    }
+  ]
+}
