@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 44952511060,
+  "runNumber": 10,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/heads/main",
+  "jobKey": "java",
+  "jobId": 136993324737,
+  "jobName": "Java 25 (ubuntu-latest)",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/44952511060/job/136993324737",
+  "runnerName": "GitHub Actions 1000003950",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j136993324737-s6",
+  "collectedAt": "2026-11-21T21:42:23.517Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "25.0.5.1",
+        "status": "OK",
+        "startedAt": 1795297084125,
+        "endedAt": 1795297335929,
+        "totalMs": 252059,
+        "wallMs": 251804,
+        "cpuMs": 76260,
+        "gcMs": 3333,
+        "gcCount": 312,
+        "jitMs": 67209,
+        "c2Ms": 67209,
+        "downloadMs": 1120775,
+        "downloadBytes": 347181122,
+        "downloadCount": 1334,
+        "moduleCount": 15,
+        "slowestMojo": {
+          "plugin": "biz.aQute.bnd:bnd-resolver-maven-plugin",
+          "goal": "resolve",
+          "phase": "pre-integration-test",
+          "executionId": "osgi-integration-resolving",
+          "moduleKey": "org.assertj:assertj-guava:4.0.0-SNAPSHOT",
+          "durationMs": 49500
+        },
+        "slowestTest": {
+          "className": "org.assertj.tests.core.presentation.StandardRepresentation_iterable_format_Test",
+          "methodName": "should_format_big_list",
+          "displayName": "should format big list",
+          "framework": "JUNIT5",
+          "durationMs": 538
+        },
+        "testCount": 10,
+        "testMs": 3762,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 16,
+          "cpuThreads": 4,
+          "memoryBytes": 16759435264,
+          "osName": "DISTRIB_ID=Ubuntu",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Azul Systems, Inc.",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": false,
+      "bytes": 3075542
+    }
+  ]
+}
