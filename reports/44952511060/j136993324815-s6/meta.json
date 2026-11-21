@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 44952511060,
+  "runNumber": 10,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/heads/main",
+  "jobKey": "kotlin",
+  "jobId": 136993324815,
+  "jobName": "Kotlin 2.1.21",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/44952511060/job/136993324815",
+  "runnerName": "GitHub Actions 1000003952",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j136993324815-s6",
+  "collectedAt": "2026-11-21T21:40:35.515Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "25.0.5.1",
+        "status": "OK",
+        "startedAt": 1795297084862,
+        "endedAt": 1795297231681,
+        "totalMs": 147113,
+        "wallMs": 146819,
+        "cpuMs": 62183,
+        "gcMs": 2480,
+        "gcCount": 181,
+        "jitMs": 57251,
+        "c2Ms": 57251,
+        "downloadMs": 255453,
+        "downloadBytes": 202518209,
+        "downloadCount": 710,
+        "moduleCount": 6,
+        "slowestMojo": {
+          "plugin": "org.apache.maven.plugins:maven-surefire-plugin",
+          "goal": "test",
+          "phase": "test",
+          "executionId": "default-test",
+          "moduleKey": "org.assertj:assertj-core:4.0.0-SNAPSHOT",
+          "durationMs": 33973
+        },
+        "slowestTest": {
+          "className": "org.assertj.core.util.Throwables_getStackTrace_Test",
+          "methodName": "calls_printStackTrace_with_temp_PrintWriter",
+          "displayName": "calls printStackTrace with temp PrintWriter",
+          "framework": "JUNIT5",
+          "durationMs": 405
+        },
+        "testCount": 10,
+        "testMs": 1789,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 2,
+          "cpuThreads": 4,
+          "memoryBytes": 16758390784,
+          "osName": "DISTRIB_ID=Ubuntu",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Azul Systems, Inc.",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": false,
+      "bytes": 2540116
+    }
+  ]
+}
