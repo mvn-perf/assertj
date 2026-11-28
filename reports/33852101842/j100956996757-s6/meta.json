@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "repository": "mvn-perf/assertj",
+  "serverUrl": "https://github.com",
+  "runId": 33852101842,
+  "runNumber": 8,
+  "runAttempt": 1,
+  "workflowRef": "mvn-perf/assertj/.github/workflows/main.yml@refs/pull/3/merge",
+  "jobKey": "java-oracle",
+  "jobId": 100956996757,
+  "jobName": "Java leyden",
+  "jobUrl": "https://github.com/mvn-perf/assertj/actions/runs/33852101842/job/100956996757",
+  "runnerName": "GitHub Actions 1000001552",
+  "stepNumber": 6,
+  "stepName": "Test",
+  "stepResolution": "job-name/report-time",
+  "label": null,
+  "key": "j100956996757-s6",
+  "collectedAt": "2026-09-04T08:15:27.797Z",
+  "reports": [
+    {
+      "file": "report.html",
+      "originalPath": "target/mvnlens/report.html",
+      "label": null,
+      "summary": {
+        "schemaVersion": 1,
+        "groupId": "org.assertj",
+        "artifactId": "assertj-build",
+        "version": "4.0.0-SNAPSHOT",
+        "goals": [
+          "verify"
+        ],
+        "threads": 1,
+        "builderId": "singlethreaded",
+        "mavenVersion": "3.9.16",
+        "jdkVersion": "26-leydenpremain",
+        "status": "OK",
+        "startedAt": 1788509431608,
+        "endedAt": 1788509724163,
+        "totalMs": 292782,
+        "wallMs": 292555,
+        "cpuMs": 67568,
+        "gcMs": 2267,
+        "gcCount": 143,
+        "jitMs": 56923,
+        "c2Ms": 56923,
+        "downloadMs": 1341965,
+        "downloadBytes": 253829665,
+        "downloadCount": 1257,
+        "moduleCount": 13,
+        "slowestMojo": {
+          "plugin": "biz.aQute.bnd:bnd-resolver-maven-plugin",
+          "goal": "resolve",
+          "phase": "pre-integration-test",
+          "executionId": "osgi-integration-resolving",
+          "moduleKey": "org.assertj:assertj-guava:4.0.0-SNAPSHOT",
+          "durationMs": 57992
+        },
+        "slowestTest": {
+          "className": "org.assertj.scripts.Convert_JUnit_Assertions_To_AssertJ_Test",
+          "methodName": "test",
+          "displayName": "[42] input = \"import static org.junit.Assert.....Test;\\n\", expected = \"import static org.junit.Assert.....Test;\\n\"",
+          "framework": "JUNIT5",
+          "durationMs": 555
+        },
+        "testCount": 10,
+        "testMs": 4305,
+        "issueCount": 0,
+        "issueSeverities": {},
+        "environment": {
+          "availableProcessors": 4,
+          "cpuCores": 2,
+          "cpuThreads": 4,
+          "memoryBytes": 16765378560,
+          "osName": "DISTRIB_ID=Ubuntu",
+          "jvmName": "OpenJDK 64-Bit Server VM",
+          "jvmVendor": "Oracle Corporation",
+          "mvnd": false,
+          "githubActions": true,
+          "c2DisabledBy": null
+        }
+      },
+      "summarySource": "html",
+      "compressed": false,
+      "bytes": 2901586
+    }
+  ]
+}
